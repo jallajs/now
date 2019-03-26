@@ -41,7 +41,6 @@ async function build ({ files, entrypoint, config, workPath }) {
         fs.readFile(path.join(dist, '.map.json'), function (err, buf) {
           if (err) return reject(err)
           var map = path.join('dist', '.map.json')
-          console.log('@jallajs/now: adding map', map)
           assets[map] = new utils.FileBlob({ data: buf })
           resolve()
         })
@@ -50,7 +49,6 @@ async function build ({ files, entrypoint, config, workPath }) {
       function onasset (file, uri, buf) {
         var asset = app.context.assets[uri]
         var out = path.join('dist', asset.url)
-        console.log('@jallajs/now: adding asset', out)
         assets[out] = new utils.FileBlob({ data: buf })
       }
     })
@@ -91,7 +89,7 @@ function launcher (entry) {
 
     try {
       var listener = require('./${entry}')
-      (listener.default) listener = listener.default
+      if (listener.default) listener = listener.default
     } catch (err) {
       if (err.code === 'MODULE_NOT_FOUND') {
         console.error(err.message)
