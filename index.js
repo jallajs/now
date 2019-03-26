@@ -10,25 +10,23 @@ var fs = require('fs')
 exports.build = build
 
 async function build ({ files, entrypoint, config, workPath }) {
-  var cwd = path.join(workPath, 'user')
-
   console.log('@jallajs/now: downloading user files')
-  await utils.download(files, cwd)
+  await utils.download(files, workPath)
 
   console.log('@jallajs/now: installing dependencies')
-  await utils.runNpmInstall(cwd)
+  await utils.runNpmInstall(workPath)
 
-  process.chdir(cwd)
+  console.log('@jallajs/now: ', fs.readdirSync(workPath))
 
   var assets = {}
   var name = files[entrypoint].digest
-  var opts = { node: true, standalone: name, basedir: cwd }
+  var opts = { node: true, standalone: name, basedir: workPath }
   var b = browserify(entrypoint, opts)
 
   var build = new Promise(function (resolve, reject) {
     b.on('jalla.entry', function (entry) {
       var app = jalla(entry, config)
-      var dist = path.join(cwd, 'dist')
+      var dist = path.join(workPath, 'dist')
 
       console.log('@jallajs/now: encountered entry file', entry)
 
