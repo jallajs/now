@@ -16,8 +16,6 @@ async function build ({ files, entrypoint, config, workPath }) {
   console.log('@jallajs/now: installing dependencies')
   await utils.runNpmInstall(workPath)
 
-  console.log('@jallajs/now: ', require.resolve('@babel/preset-env'))
-
   var assets = {}
   var name = files[entrypoint].digest
   var opts = { node: true, standalone: name, basedir: workPath }
@@ -27,8 +25,6 @@ async function build ({ files, entrypoint, config, workPath }) {
     b.on('jalla.entry', function (entry) {
       var app = jalla(entry, config)
       var dist = path.join(workPath, 'dist')
-
-      console.log('@jallajs/now: encountered entry file', entry)
 
       app.on('bundle:script', onasset)
       app.on('bundle:style', onasset)
