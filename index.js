@@ -7,6 +7,10 @@ var jalla = require('jalla')
 var path = require('path')
 var fs = require('fs')
 
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = 'production'
+}
+
 exports.build = build
 
 async function build ({ files, entrypoint, config, workPath }) {
