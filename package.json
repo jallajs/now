@@ -1,6 +1,6 @@
 {
   "name": "@jallajs/now",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Jalla builder for now serverless platform",
   "main": "index.js",
   "scripts": {
