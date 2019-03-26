@@ -63,8 +63,6 @@ async function build ({ files, entrypoint, config, workPath }) {
 
   await Promise.all([build, bundle])
 
-  console.log('@jallajs/now: bundled assets', Object.keys(assets))
-
   var lambda = await utils.createLambda({
     files: Object.assign({
       'launcher.js': new utils.FileBlob({ data: launcher('server.js') }),
