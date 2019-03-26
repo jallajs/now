@@ -81,8 +81,8 @@ async function build ({ files, entrypoint, config, workPath }) {
 
 function launcher (entry) {
   return dedent`
-    var http = require('http')
-    var Bridge = require('./bridge')
+    var { Server } = require('http')
+    var { Bridge } = require('./bridge')
 
     if (!process.env.NODE_ENV) {
       process.env.NODE_ENV = 'production'
@@ -101,8 +101,8 @@ function launcher (entry) {
       }
     }
 
-    const server = new http.Server(listener)
-    const bridge = new Bridge(server)
+    var server = new Server(listener)
+    var bridge = new Bridge(server)
     bridge.listen()
 
     exports.launcher = bridge.launcher
