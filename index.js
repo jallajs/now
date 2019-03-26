@@ -27,7 +27,7 @@ async function build ({ files, entrypoint, config, workPath }) {
 
   var build = new Promise(function (resolve, reject) {
     b.on('jalla.entry', function (entry) {
-      var app = jalla(entry, config)
+      var app = jalla(entry, Object.assign({ quiet: true }, config))
       var dist = path.join(workPath, 'dist')
 
       app.on('bundle:script', onasset)
@@ -100,7 +100,7 @@ function launcher (entry) {
       }
     }
 
-    const server = createServer(listener)
+    const server = http.createServer(listener)
     const bridge = new Bridge(server)
     bridge.listen()
 
