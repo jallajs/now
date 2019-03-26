@@ -24,9 +24,10 @@
   },
   "homepage": "https://github.com/jallajs/now#readme",
   "peerDependencies": {
-    "@now/build-utils": "^0.4.37"
+    "@now/build-utils": "*"
   },
   "dependencies": {
+    "@now/node-bridge": "^1.0.0",
     "browserify": "^16.2.3",
     "concat-stream": "^2.0.0",
     "dedent": "^0.7.0",

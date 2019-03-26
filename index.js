@@ -4,12 +4,13 @@ var concat = require('concat-stream')
 var jallaify = require('jallaify')
 var dedent = require('dedent')
 var jalla = require('jalla')
+var path = require('path')
 var fs = require('fs')
 
 exports.build = build
 
 async function build ({ files, entrypoint, config, workPath }) {
-  var cwd = utils.join(workPath, 'user')
+  var cwd = path.join(workPath, 'user')
 
   console.log('@jallajs/now: downloading user files')
   await utils.download(files, cwd)
@@ -25,7 +26,7 @@ async function build ({ files, entrypoint, config, workPath }) {
   var build = new Promise(function (resolve, reject) {
     b.on('jalla.entry', function (entry) {
       var app = jalla(entry, config)
-      var dist = utils.join(cwd, 'dist')
+      var dist = path.join(cwd, 'dist')
 
       console.log('@jallajs/now: encountered entry file', entry)
 
@@ -37,9 +38,9 @@ async function build ({ files, entrypoint, config, workPath }) {
       console.log('@jallajs/now: building assets')
       app.build(dist, function (err) {
         if (err) return reject(err)
-        fs.readFile(utils.join(dist, '.map.json'), function (err, buf) {
+        fs.readFile(path.join(dist, '.map.json'), function (err, buf) {
           if (err) return reject(err)
-          var map = utils.join('dist', '.map.json')
+          var map = path.join('dist', '.map.json')
           console.log('@jallajs/now: adding map', map)
           assets[map] = new utils.FileBlob({ data: buf })
           resolve()
@@ -48,7 +49,7 @@ async function build ({ files, entrypoint, config, workPath }) {
 
       function onasset (file, uri, buf) {
         var asset = app.context.assets[uri]
-        var out = utils.join('dist', asset.url)
+        var out = path.join('dist', asset.url)
         console.log('@jallajs/now: adding asset', out)
         assets[out] = new utils.FileBlob({ data: buf })
       }
