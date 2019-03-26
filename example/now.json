@@ -1,0 +1,16 @@
+{
+  "version": "2",
+  "name": "jalla-now-example",
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@jallajs/now"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/server.js"
+    }
+  ]
+}

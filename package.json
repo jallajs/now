@@ -1,0 +1,39 @@
+{
+  "name": "@jallajs/now",
+  "version": "0.1.0",
+  "description": "Jalla builder for now serverless platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jallajs/now.git"
+  },
+  "keywords": [
+    "jalla",
+    "now",
+    "serverless",
+    "browserify",
+    "choo"
+  ],
+  "author": "code and conspire",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jallajs/now/issues"
+  },
+  "homepage": "https://github.com/jallajs/now#readme",
+  "peerDependencies": {
+    "@now/build-utils": "^0.4.37"
+  },
+  "dependencies": {
+    "browserify": "^16.2.3",
+    "concat-stream": "^2.0.0",
+    "dedent": "^0.7.0",
+    "jalla": "^0.12.0-7",
+    "jallaify": "^1.0.0"
+  },
+  "devDependencies": {
+    "standard": "^12.0.1"
+  }
+}
