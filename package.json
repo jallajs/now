@@ -32,7 +32,7 @@
     "concat-stream": "^2.0.0",
     "dedent": "^0.7.0",
     "jalla": "^0.12.0-7",
-    "jallaify": "^1.0.0"
+    "jallaify": "^1.1.1"
   },
   "devDependencies": {
     "standard": "^12.0.1"

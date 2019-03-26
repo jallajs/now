@@ -16,7 +16,7 @@ async function build ({ files, entrypoint, config, workPath }) {
   console.log('@jallajs/now: installing dependencies')
   await utils.runNpmInstall(workPath)
 
-  console.log('@jallajs/now: ', fs.readdirSync(workPath))
+  console.log('@jallajs/now: ', require.resolve('@babel/preset-env'))
 
   var assets = {}
   var name = files[entrypoint].digest
