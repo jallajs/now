@@ -18,6 +18,8 @@ async function build ({ files, entrypoint, config, workPath }) {
   console.log('@jallajs/now: installing dependencies')
   await utils.runNpmInstall(cwd)
 
+  process.chdir(cwd)
+
   var assets = {}
   var name = files[entrypoint].digest
   var opts = { node: true, standalone: name, basedir: cwd }
